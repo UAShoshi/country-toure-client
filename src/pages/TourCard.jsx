@@ -2,11 +2,45 @@ import { HiPencil } from "react-icons/hi";
 import { IoMdEye } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
-const TourCard = ({tour}) => {
+const TourCard = ({tour, tours, setTours}) => {
 
-  const {name, email, touristsSpotName, countryName, location, averageCost, travelTime, totaVisitorsPerYear, seasonality, shortDescription, image} = tour;
+  const {_id, name, email, touristsSpotName, countryName, location, averageCost, travelTime, totaVisitorsPerYear, seasonality, shortDescription, image} = tour;
+
+  const handleDelete = _id =>{
+    console.log(_id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+        fetch(`http://localhost:5000/tour/${_id}`, {
+          method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data =>{
+          console.log(data);
+          if (data.deletedCount > 0) {
+            Swal.fire({
+          title: "Deleted!",
+          text: "Your coffee has been deleted.",
+          icon: "success"
+        }); 
+        const remaining = tours.filter(cof => cof._id !== _id);
+        setTours(remaining);        
+          }
+        })
+      }
+    });
+  }
 
   return (
     <div>
@@ -24,9 +58,9 @@ const TourCard = ({tour}) => {
       <p><span className="font-bold">Seasonality</span> {seasonality}</p>
     </div>
     <div className="card-actions justify-center">
-    <button className="btn bg-[#D2B48C] text-white"><IoMdEye className="text-white"></IoMdEye> Detail</button>
+    <Link to={`/tours/${_id}`}><button className="btn bg-[#D2B48C] text-white"><IoMdEye className="text-white"></IoMdEye> Detail</button></Link>
       <Link to='/update'><button className="btn bg-[#3C393B] text-white"><HiPencil className="text-white"></HiPencil> Update</button></Link>
-      <button className="btn bg-[#EA4744] text-white"><MdDelete className="text-white"></MdDelete> Delete</button>
+      <button onClick={() => handleDelete(_id)} className="btn bg-[#EA4744] text-white"><MdDelete className="text-white"></MdDelete> Delete</button>
     </div>
   </div>
 </div>

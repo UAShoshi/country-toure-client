@@ -1,9 +1,11 @@
 import { useLoaderData } from "react-router-dom";
 import TourCard from "./TourCard";
+import { useState } from "react";
 
 
 const Home = () => {
-  const tours = useLoaderData();
+  const loadedTours = useLoaderData();
+  const [tours, setTours] = useState(loadedTours)
   
 
   return (
@@ -47,6 +49,8 @@ const Home = () => {
     tours.map(tour => <TourCard 
       key={tour._id}
       tour={tour}
+      tours={tours}
+      setTours={setTours}
        ></TourCard>)
   }
   </div>

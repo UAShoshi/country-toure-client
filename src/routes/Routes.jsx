@@ -7,6 +7,7 @@ import MyList from "../pages/MyList";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Error from "../pages/Error";
+import Tour from "../pages/Tour";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
         loader: () => fetch('http://localhost:5000/tour')
+      },
+      {
+        path: "/tours/:_id",
+        element: <Tour></Tour>,
+        loader: () => fetch('http://localhost:5000/tour'),
       },
       {
         path: "/allTouristsSpot",
