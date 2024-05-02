@@ -8,6 +8,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Error from "../pages/Error";
 import Tour from "../pages/Tour";
+import Update from "../pages/Update";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
         path: "/myList",
         element: <MyList></MyList>,
         loader: () => fetch('http://localhost:5000/tour')
+      },
+      {
+        path: "/update/:id",
+        element: <Update></Update>,
+        loader: ({params}) => fetch(`http://localhost:5000/tour/${params.id}`)
       },
       {
         path: "/login",

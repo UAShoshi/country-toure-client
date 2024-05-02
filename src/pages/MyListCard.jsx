@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const MyListCard = ({tour, tours, setTours}) => {
 
-  const {_id, name, email, touristsSpotName, countryName, location, averageCost, travelTime, totaVisitorsPerYear, seasonality, shortDescription, image} = tour;
+  const {_id, name, email, touristsSpotName, averageCost, travelTime, totaVisitorsPerYear, seasonality, shortDescription, image} = tour;
 
 
 
@@ -61,7 +61,7 @@ const MyListCard = ({tour, tours, setTours}) => {
     </div>
     <div className="card-actions justify-center">
     <Link to={`/tours/${_id}`}><button className="btn bg-[#D2B48C] text-white"><IoMdEye className="text-white"></IoMdEye> Detail</button></Link>
-      <Link to='/update'><button className="btn bg-[#3C393B] text-white"><HiPencil className="text-white"></HiPencil> Update</button></Link>
+      <Link to={`/update/${_id}`}><button className="btn bg-[#3C393B] text-white"><HiPencil className="text-white"></HiPencil> Update</button></Link>
       <button onClick={() => handleDelete(_id)} className="btn bg-[#EA4744] text-white"><MdDelete className="text-white"></MdDelete> Delete</button>
     </div>
   </div>
