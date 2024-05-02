@@ -35,7 +35,7 @@ const AddTouristsSpot = () => {
       if (data.insertedId) {
         Swal.fire({
           title: 'Good Luck !!!',
-          text: 'Coffee added successfully',
+          text: 'Card added successfully',
           icon: 'success',
           confirmButtonText: 'OK'
         })
@@ -126,7 +126,7 @@ const AddTouristsSpot = () => {
             <input type="text" name="image" placeholder="https://i.ibb.co/PGqMPr9/11.png" className="input w-full" />
           </label>
         </div>
-        <input type="submit" value="Add Coffee" className="btn btn-block bg-black font-bold text-white" />
+        <input type="submit" value="Add Card" className="btn btn-block bg-black font-bold text-white" />
       </form>
     </div>
   );
