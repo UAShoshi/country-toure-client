@@ -9,6 +9,7 @@ import Register from "../pages/Register";
 import Error from "../pages/Error";
 import Tour from "../pages/Tour";
 import Update from "../pages/Update";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/tours/:id",
-        element: <Tour></Tour>,
+        element: <PrivateRoute><Tour></Tour></PrivateRoute>,
         loader: () => fetch('http://localhost:5000/tour')
       },
       {
@@ -33,16 +34,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/addTouristsSpot",
-        element: <AddTouristsSpot></AddTouristsSpot>
+        element: <PrivateRoute><AddTouristsSpot></AddTouristsSpot></PrivateRoute>
       },
       {
         path: "/myList",
-        element: <MyList></MyList>,
+        element: <PrivateRoute><MyList></MyList></PrivateRoute>,
         loader: () => fetch('http://localhost:5000/tour')
       },
       {
         path: "/update/:id",
-        element: <Update></Update>,
+        element: <PrivateRoute><Update></Update></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/tour/${params.id}`)
       },
       {

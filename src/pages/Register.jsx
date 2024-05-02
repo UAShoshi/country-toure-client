@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
+import { useContext } from "react";
 
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext)
 
   const handleRegister = e =>{
     e.preventDefault();
@@ -13,6 +16,34 @@ const Register = () => {
     const email  = form.get('email');
     const password  = form.get('password');
     console.log(name, photoURL, email, password);
+
+
+    createUser(email, password)
+    .then(result => {
+      console.log(result.user);
+
+       // new user has been created
+       const createdAt = result.user?.metadata?.creationTime
+       const user = { email, createdAt };
+       fetch('http://localhost:5000/user', {
+         method: 'POST',
+         headers: {
+           "content-type": 'application/json'
+         },
+         body: JSON.stringify(user)
+       })
+       .then(res => res.json())
+       .then(data => {
+         console.log(data);
+         if (data.insertedId) {
+           console.log('user added to the database');
+         }
+       }) 
+    })
+      .catch(error => {
+        console.error(error);
+      })
+
   }
 
   return (
