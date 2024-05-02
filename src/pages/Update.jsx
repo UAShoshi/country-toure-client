@@ -24,7 +24,7 @@ const Update = () => {
     console.log(updateTour);
 
     // send data to the server
-    fetch(`http://localhost:5000/tour${_id}`, {
+    fetch(`http://localhost:5000/tour/${_id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
