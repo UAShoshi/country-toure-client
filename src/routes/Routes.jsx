@@ -20,17 +20,17 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/tour')
+        loader: () => fetch('https://country-toure-server.vercel.app/tour')
       },
       {
         path: "/tours/:id",
         element: <PrivateRoute><Tour></Tour></PrivateRoute>,
-        loader: () => fetch('http://localhost:5000/tour')
+        loader: () => fetch('https://country-toure-server.vercel.app/tour')
       },
       {
         path: "/allTouristsSpot",
         element: <AllTouristsSpot></AllTouristsSpot>,
-        loader: () => fetch('http://localhost:5000/tour')
+        loader: () => fetch('https://country-toure-server.vercel.app/tour')
       },
       {
         path: "/addTouristsSpot",
@@ -39,12 +39,12 @@ const router = createBrowserRouter([
       {
         path: "/myList",
         element: <PrivateRoute><MyList></MyList></PrivateRoute>,
-        loader: () => fetch('http://localhost:5000/tour')
+        loader: () => fetch('https://country-toure-server.vercel.app/tour')
       },
       {
         path: "/update/:id",
         element: <PrivateRoute><Update></Update></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/tour/${params.id}`)
+        loader: ({params}) => fetch(`https://country-toure-server.vercel.app/tour/${params.id}`)
       },
       {
         path: "/login",

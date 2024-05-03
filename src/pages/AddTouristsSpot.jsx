@@ -22,7 +22,7 @@ const AddTouristsSpot = () => {
     console.log(newTour);
 
     // send data to the server
-    fetch('http://localhost:5000/tour', {
+    fetch('https://country-toure-server.vercel.app/tour', {
       method: 'POST',
       headers: {
         'content-type' : 'application/json'

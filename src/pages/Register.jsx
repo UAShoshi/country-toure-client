@@ -25,7 +25,7 @@ const Register = () => {
        // new user has been created
        const createdAt = result.user?.metadata?.creationTime
        const user = { email, createdAt };
-       fetch('http://localhost:5000/user', {
+       fetch('https://country-toure-server.vercel.app/user', {
          method: 'POST',
          headers: {
            "content-type": 'application/json'
